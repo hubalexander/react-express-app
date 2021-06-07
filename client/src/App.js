@@ -1,49 +1,52 @@
-import React, { Component } from 'react';
-import './App.css';
+import "./css/App.css";
+import React, { useState, useEffect } from "react";
+import welcomeText from "./tools/ComponentTitle";
+import serverFetch from "./tools/Fetch";
+function App() {
+  const [data, setData] = useState("");
+  const [isFetched, setIsFetched] = useState(false);
+  const [memberName, setMemberName] = useState("");
 
-class App extends Component {
-state = {
-    data: null
+  useEffect(() => {
+    welcomeText()
+      .then((res) => setData(res.title))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const getAll = async () => {
+    setMemberName(await serverFetch());
+    setIsFetched(true);
   };
 
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
-  }
-    // fetching the GET route from the Express server which matches the GET route from server.js
-  callBackendAPI = async () => {
-    const response = await fetch('/api');
-    const body = await response.json();
+  return (
+    <div className="App">
+      <header className="App-header">
+        {!isFetched ? (
+          <div>
+            <p>{data}</p>
+            <p className="FunctionButton" onClick={getAll}>
+              Get members
+            </p>
+          </div>
+        ) : null}
 
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-    return body;
-  };
-
-  getAll = async () => {
-    const response = await fetch('/all');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-     console.log(body);
-  };
-
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-        <p className="App-intro">{this.state.data}</p>
-        </header>
-  
-      </div>
-    );
-  }
+        {isFetched ? (
+          <div className="MemberNames">
+            <p>{memberName[0]}</p>
+            <p>{memberName[1]}</p>
+            <p>{memberName[2]}</p>
+            <p>{memberName[3]}</p>
+            <p
+              className="FunctionButton"
+              onClick={() => window.location.reload()}
+            >
+              Return
+            </p>
+          </div>
+        ) : null}
+      </header>
+    </div>
+  );
 }
 
 export default App;

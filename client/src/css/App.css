@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.FunctionButton{
+  font-size: calc(3px + 2vmin);
+}
+
+.FunctionButton:hover{
+  color: rgb(167, 125, 64);
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(25px + 2vmin);
+  color: white;
+}
+
+.MemberNames{
+  font-size: calc(12px + 2vmin);
+
+}
