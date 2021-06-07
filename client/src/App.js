@@ -4,7 +4,7 @@ import welcomeText from "./tools/ComponentTitle";
 import memberFetch from "./tools/Fetch";
 function App() {
   
-  //Web hooks. 
+  //Web hooks 
   const [data, setData] = useState("");
   const [isFetched, setIsFetched] = useState(false);
   const [memberName, setMemberName] = useState("");
