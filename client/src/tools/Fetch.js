@@ -1,4 +1,5 @@
-const serverFetch = async () => {
+//Fetches the members from server
+const memberFetch = async () => {
     const tempNames = [];
     var i;
   
@@ -11,4 +12,4 @@ const serverFetch = async () => {
     return tempNames;
   };
   
-  export default serverFetch;
+  export default memberFetch;

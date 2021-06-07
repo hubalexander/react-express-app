@@ -1,4 +1,4 @@
-//
+//Fetches welcome text from server
 const welcomeText = async () => {
   const response = await fetch("/api");
   const body = await response.json();

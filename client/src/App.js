@@ -1,8 +1,10 @@
 import "./css/App.css";
 import React, { useState, useEffect } from "react";
 import welcomeText from "./tools/ComponentTitle";
-import serverFetch from "./tools/Fetch";
+import memberFetch from "./tools/Fetch";
 function App() {
+  
+  //Web hooks. 
   const [data, setData] = useState("");
   const [isFetched, setIsFetched] = useState(false);
   const [memberName, setMemberName] = useState("");
@@ -14,7 +16,7 @@ function App() {
   }, []);
 
   const getAll = async () => {
-    setMemberName(await serverFetch());
+    setMemberName(await memberFetch());
     setIsFetched(true);
   };
 
